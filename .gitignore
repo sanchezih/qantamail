@@ -15,7 +15,8 @@ hs_err_pid*
 
 # eclipse
 
-.target/
+
+target/*
 .metadata
 bin/
 tmp/
