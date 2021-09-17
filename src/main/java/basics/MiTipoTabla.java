@@ -8,6 +8,8 @@ import javax.swing.table.TableCellRenderer;
 
 public class MiTipoTabla extends JTable {
 
+	private static final long serialVersionUID = 1L;
+
 	public Component prepareRenderer(TableCellRenderer renderer, int fila, int columna) {
 		Component returnComponent = super.prepareRenderer(renderer, fila, columna);
 		Color colorAlternativo = new Color(255, 250, 200);

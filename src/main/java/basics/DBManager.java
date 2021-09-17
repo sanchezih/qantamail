@@ -6,11 +6,11 @@ import java.sql.Statement;
 
 public class DBManager {
 
-	private static final String DRIVER = "com.mysql.jdbc.Driver";
+	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String DB_NAME = "qantamail";
-	private static final String DB_URL = "jdbc:mysql://localhost/" + DB_NAME;
+	private static final String DB_URL = "jdbc:mysql://192.168.4.172/" + DB_NAME;
 	private static final String DB_USERNAME = "root";
-	private static final String DB_PASSWORD = "";
+	private static final String DB_PASSWORD = "password1234";
 	private static DBManager instance = null;
 
 	private DBManager() {
@@ -24,22 +24,21 @@ public class DBManager {
 	}
 
 	public Connection connect() {
-		Connection conexion = null;
+		Connection connection = null;
 		try {
 			Class.forName(DRIVER).newInstance();
-			conexion = DriverManager.getConnection(DB_URL, DB_USERNAME,
-					DB_PASSWORD);
-			conexion.setAutoCommit(false);
+			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+			connection.setAutoCommit(false);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return conexion;
+		return connection;
 	}
 
 	public void shutdown() throws Exception {
-		Connection conn = connect();
-		Statement s = conn.createStatement();
-		s.execute("SHUTDOWN");
-		conn.close();
+		Connection connection = connect();
+		Statement statement = connection.createStatement();
+		statement.execute("SHUTDOWN");
+		connection.close();
 	}
 }

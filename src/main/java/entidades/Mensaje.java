@@ -3,23 +3,15 @@ package entidades;
 public class Mensaje {
 
 	private int idMensaje;
-	private String de, para, cc, cco, asunto, texto, fecha, estado, caracter;
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public String getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
-	}
+	private String de;
+	private String para;
+	private String cc;
+	private String cco;
+	private String asunto;
+	private String texto;
+	private String fecha;
+	private String estado;
+	private String caracter;
 
 	public int getIdMensaje() {
 		return idMensaje;
@@ -75,6 +67,22 @@ public class Mensaje {
 
 	public void setTexto(String texto) {
 		this.texto = texto;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public String getCaracter() {

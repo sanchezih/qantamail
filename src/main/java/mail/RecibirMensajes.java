@@ -32,13 +32,10 @@ public class RecibirMensajes {
 		// Se obtiene la Session
 		Properties propiedades = new Properties();
 		propiedades.setProperty("mail.pop3.starttls.enable", "false");
-		propiedades.setProperty("mail.pop3.socketFactory.class",
-				"javax.net.ssl.SSLSocketFactory");
-		propiedades.setProperty("mail.pop3.socketFactory.fallback",
-				basics.Constantes.FALLBACK);
+		propiedades.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		propiedades.setProperty("mail.pop3.socketFactory.fallback", basics.Constantes.FALLBACK);
 		propiedades.setProperty("mail.pop3.port", basics.Constantes.PUERTO_POP);
-		propiedades.setProperty("mail.pop3.socketFactory.port",
-				basics.Constantes.PUERTO_POP);
+		propiedades.setProperty("mail.pop3.socketFactory.port", basics.Constantes.PUERTO_POP);
 
 		Session sesion = Session.getInstance(propiedades);
 		// sesion.setDebug(true);
@@ -46,8 +43,7 @@ public class RecibirMensajes {
 		try {
 			// Se obtiene el Store y el Folder, para poder leer el correo.
 			Store store = sesion.getStore(basics.Constantes.PROTOCOLO_POP3);
-			store.connect(basics.Constantes.SERVIDOR_POP,
-					basics.Constantes.CUENTA, basics.Constantes.PASSWORD);
+			store.connect(basics.Constantes.SERVIDOR_POP, basics.Constantes.CUENTA, basics.Constantes.PASSWORD);
 
 			Folder carpeta = store.getFolder("INBOX");
 			carpeta.open(Folder.READ_ONLY);
@@ -61,8 +57,7 @@ public class RecibirMensajes {
 				mensaje = new Mensaje();
 
 				// Analizo el asunto
-				if (mensajes[i].getSubject() == null
-						|| mensajes[i].getSubject().isEmpty()) {
+				if (mensajes[i].getSubject() == null || mensajes[i].getSubject().isEmpty()) {
 					mensaje.setAsunto("(Sin asunto)");
 				} else {
 					mensaje.setAsunto(mensajes[i].getSubject().toString());
@@ -70,16 +65,12 @@ public class RecibirMensajes {
 
 				// Analizo el "De"
 				mensaje.setDe(mensajes[i].getFrom()[0].toString());
-				System.out
-						.println("De: " + mensajes[i].getFrom()[0].toString());
+				System.out.println("De: " + mensajes[i].getFrom()[0].toString());
 
 				// Seteo los receptoresTO
 				String receptoresTO = "";
-				for (int j = 0; j < mensajes[i]
-						.getRecipients(Message.RecipientType.TO).length; j++) {
-					String direccion = mensajes[i]
-							.getRecipients(Message.RecipientType.TO)[j]
-							.toString();
+				for (int j = 0; j < mensajes[i].getRecipients(Message.RecipientType.TO).length; j++) {
+					String direccion = mensajes[i].getRecipients(Message.RecipientType.TO)[j].toString();
 					System.out.println(direccion);
 					if (j > 0) {
 						receptoresTO = receptoresTO + ", ";
@@ -92,11 +83,8 @@ public class RecibirMensajes {
 				// Seteo los receptoresCC
 				String receptoresCC = "";
 				if (mensajes[i].getRecipients(Message.RecipientType.CC) != null) {
-					for (int j = 0; j < mensajes[i]
-							.getRecipients(Message.RecipientType.CC).length; j++) {
-						String direccion = mensajes[i]
-								.getRecipients(Message.RecipientType.CC)[j]
-								.toString();
+					for (int j = 0; j < mensajes[i].getRecipients(Message.RecipientType.CC).length; j++) {
+						String direccion = mensajes[i].getRecipients(Message.RecipientType.CC)[j].toString();
 						System.out.println(direccion);
 
 						if (j > 0) {
@@ -113,11 +101,8 @@ public class RecibirMensajes {
 				// Seteo los receptoresCCO
 				String receptoresCCO = "";
 				if (mensajes[i].getRecipients(Message.RecipientType.BCC) != null) {
-					for (int j = 0; j < mensajes[i]
-							.getRecipients(Message.RecipientType.BCC).length; j++) {
-						String direccion = mensajes[i]
-								.getRecipients(Message.RecipientType.BCC)[j]
-								.toString();
+					for (int j = 0; j < mensajes[i].getRecipients(Message.RecipientType.BCC).length; j++) {
+						String direccion = mensajes[i].getRecipients(Message.RecipientType.BCC)[j].toString();
 						System.out.println(direccion);
 						if (j > 0) {
 							receptoresCCO = receptoresCCO + ", ";
@@ -178,10 +163,8 @@ public class RecibirMensajes {
 					// Si es imagen, se guarda en fichero y se visualiza en
 					// JFrame
 					if (pUnaParte.isMimeType("image/*")) {
-						System.out.println("Imagen "
-								+ pUnaParte.getContentType());
-						System.out
-								.println("Fichero=" + pUnaParte.getFileName());
+						System.out.println("Imagen " + pUnaParte.getContentType());
+						System.out.println("Fichero=" + pUnaParte.getFileName());
 						System.out.println("---------------------------------");
 
 						guardarImagenEnArchivo(pUnaParte);
@@ -189,8 +172,7 @@ public class RecibirMensajes {
 					} else {
 						// Si no es ninguna de las anteriores, se escribe en
 						// pantalla el tipo.
-						System.out.println("Recibido "
-								+ pUnaParte.getContentType());
+						System.out.println("Recibido " + pUnaParte.getContentType());
 						System.out.println("---------------------------------");
 					}
 				}
@@ -200,11 +182,9 @@ public class RecibirMensajes {
 		}
 	}
 
-	private static void visualizarImagenEnJFrame(Part pUnaParte)
-			throws IOException, MessagingException {
+	private static void visualizarImagenEnJFrame(Part pUnaParte) throws IOException, MessagingException {
 		JFrame v = new JFrame();
-		ImageIcon icono = new ImageIcon(
-				ImageIO.read(pUnaParte.getInputStream()));
+		ImageIcon icono = new ImageIcon(ImageIO.read(pUnaParte.getInputStream()));
 		JLabel label = new JLabel(icono);
 		v.getContentPane().add(label);
 		v.pack();
@@ -213,8 +193,7 @@ public class RecibirMensajes {
 
 	private static void guardarImagenEnArchivo(Part pUnaParte)
 			throws FileNotFoundException, MessagingException, IOException {
-		FileOutputStream fichero = new FileOutputStream("c:\\"
-				+ pUnaParte.getFileName());
+		FileOutputStream fichero = new FileOutputStream("c:\\" + pUnaParte.getFileName());
 		InputStream imagen = pUnaParte.getInputStream();
 		byte[] bytes = new byte[1000];
 		int leidos = 0;

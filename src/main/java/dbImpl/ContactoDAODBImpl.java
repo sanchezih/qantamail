@@ -14,36 +14,27 @@ public class ContactoDAODBImpl implements IContactoDAO {
 
 	public void contactoInsert(Contacto pContacto) throws DAOException {
 
-		String query = "INSERT INTO CONTACTO (id_contacto, nombre, apellido, email,  telefono, direccion) VALUES ("
-				+ pContacto.getIdContacto()
-				+ ", '"
-				+ pContacto.getNombre()
-				+ "', '"
-				+ pContacto.getApellido()
-				+ "', '"
-				+ pContacto.getEmail()
-				+ "', '"
-				+ pContacto.getTelefono()
-				+ "', '" + pContacto.getDireccion() + "')";
+		String query = "INSERT INTO contacto (id_contacto, nombre, apellido, email,  telefono, direccion) VALUES ("
+				+ pContacto.getIdContacto() + ", '" + pContacto.getNombre() + "', '" + pContacto.getApellido() + "', '"
+				+ pContacto.getEmail() + "', '" + pContacto.getTelefono() + "', '" + pContacto.getDireccion() + "')";
 
-		Connection conexion = DBManager.getInstance().connect();
+		Connection connection = DBManager.getInstance().connect();
 
 		try {
-			Statement s = conexion.createStatement();
+			Statement s = connection.createStatement();
 			s.executeUpdate(query);
-			conexion.commit();
+			connection.commit();
 		} catch (SQLException e) {
 			try {
-				conexion.rollback();
+				connection.rollback();
 				e.printStackTrace();
-				throw new DAOException(
-						"Error al conectar con la base de datos", e);
+				throw new DAOException("Error al conectar con la base de datos", e);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 		} finally {
 			try {
-				conexion.close();
+				connection.close();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -51,31 +42,28 @@ public class ContactoDAODBImpl implements IContactoDAO {
 	}
 
 	public void contactoUpdate(Contacto pContacto) throws DAOException {
-		String query = "UPDATE CONTACTO SET NOMBRE = '" + pContacto.getNombre()
-				+ "', APELLIDO='" + pContacto.getApellido() + "', EMAIL='"
-				+ pContacto.getEmail() + "',TELEFONO='"
-				+ pContacto.getTelefono() + "',DIRECCION='"
-				+ pContacto.getDireccion() + "' WHERE id_contacto = "
+		String query = "UPDATE contacto SET NOMBRE = '" + pContacto.getNombre() + "', APELLIDO='"
+				+ pContacto.getApellido() + "', EMAIL='" + pContacto.getEmail() + "',TELEFONO='"
+				+ pContacto.getTelefono() + "',DIRECCION='" + pContacto.getDireccion() + "' WHERE id_contacto = "
 				+ pContacto.getIdContacto();
 
-		Connection conexion = DBManager.getInstance().connect();
+		Connection connection = DBManager.getInstance().connect();
 
 		try {
-			Statement s = conexion.createStatement();
+			Statement s = connection.createStatement();
 			s.executeUpdate(query);
-			conexion.commit();
+			connection.commit();
 		} catch (SQLException e) {
 			try {
-				conexion.rollback();
+				connection.rollback();
 				e.printStackTrace();
-				throw new DAOException(
-						"Error al conectar con la base de datos", e);
+				throw new DAOException("Error al conectar con la base de datos", e);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 		} finally {
 			try {
-				conexion.close();
+				connection.close();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -84,26 +72,24 @@ public class ContactoDAODBImpl implements IContactoDAO {
 
 	public void contactoDelete(Contacto pContacto) throws DAOException {
 
-		String query = "DELETE FROM CONTACTO WHERE id_contacto ="
-				+ pContacto.getIdContacto();
+		String query = "DELETE FROM contacto WHERE id_contacto =" + pContacto.getIdContacto();
 		;
-		Connection conexion = DBManager.getInstance().connect();
+		Connection connection = DBManager.getInstance().connect();
 		try {
-			Statement s = conexion.createStatement();
+			Statement s = connection.createStatement();
 			s.executeUpdate(query);
-			conexion.commit();
+			connection.commit();
 		} catch (SQLException e) {
 			try {
-				conexion.rollback();
+				connection.rollback();
 				e.printStackTrace();
-				throw new DAOException(
-						"Error al conectar con la base de datos", e);
+				throw new DAOException("Error al conectar con la base de datos", e);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 		} finally {
 			try {
-				conexion.close();
+				connection.close();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -114,10 +100,10 @@ public class ContactoDAODBImpl implements IContactoDAO {
 
 		ArrayList<Contacto> listaDeContactos = new ArrayList<Contacto>();
 
-		String query = "SELECT * FROM CONTACTO";
-		Connection conexion = DBManager.getInstance().connect();
+		String query = "SELECT * FROM contacto";
+		Connection connection = DBManager.getInstance().connect();
 		try {
-			Statement s = conexion.createStatement();
+			Statement s = connection.createStatement();
 			ResultSet rs = s.executeQuery(query);
 
 			while (rs.next()) {
@@ -141,16 +127,15 @@ public class ContactoDAODBImpl implements IContactoDAO {
 			}
 		} catch (SQLException e) {
 			try {
-				conexion.rollback();
+				connection.rollback();
 				e.printStackTrace();
-				throw new DAOException(
-						"Error al conectar con la base de datos", e);
+				throw new DAOException("Error al conectar con la base de datos", e);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 		} finally {
 			try {
-				conexion.close();
+				connection.close();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -160,8 +145,7 @@ public class ContactoDAODBImpl implements IContactoDAO {
 
 	public Contacto getContactoById(int idContacto) throws DAOException {
 		Contacto contacto = null;
-		String query = "SELECT * FROM CONTACTO WHERE id_contacto = '"
-				+ idContacto + "'";
+		String query = "SELECT * FROM contacto WHERE id_contacto = '" + idContacto + "'";
 		Connection conexion = DBManager.getInstance().connect();
 		try {
 			Statement s = conexion.createStatement();
@@ -177,8 +161,7 @@ public class ContactoDAODBImpl implements IContactoDAO {
 			try {
 				conexion.rollback();
 				e.printStackTrace();
-				throw new DAOException(
-						"Error al conectar con la base de datos", e);
+				throw new DAOException("Error al conectar con la base de datos", e);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -194,7 +177,7 @@ public class ContactoDAODBImpl implements IContactoDAO {
 
 	public int getMaxIdContacto() throws DAOException {
 		int maximo = 0;
-		String query = "SELECT MAX(id_contacto) maximo FROM CONTACTO";
+		String query = "SELECT MAX(id_contacto) maximo FROM contacto";
 		Connection conexion = DBManager.getInstance().connect();
 		try {
 			Statement s = conexion.createStatement();
@@ -206,8 +189,7 @@ public class ContactoDAODBImpl implements IContactoDAO {
 			try {
 				conexion.rollback();
 				e.printStackTrace();
-				throw new DAOException(
-						"Error al conectar con la base de datos", e);
+				throw new DAOException("Error al conectar con la base de datos", e);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}

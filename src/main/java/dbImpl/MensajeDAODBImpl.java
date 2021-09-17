@@ -21,7 +21,7 @@ public class MensajeDAODBImpl implements IMensajeDAO {
 
 		ArrayList<Mensaje> retorna = new ArrayList<Mensaje>();
 
-		String query = "SELECT * FROM MENSAJE WHERE estado = '" + pEstado
+		String query = "SELECT * FROM mensaje WHERE estado = '" + pEstado
 				+ "' AND caracter = '" + pCaracter
 				+ "' ORDER BY id_mensaje DESC";
 
@@ -81,7 +81,7 @@ public class MensajeDAODBImpl implements IMensajeDAO {
 
 	public Mensaje getMensajeById(int pIdMensaje) throws DAOException {
 		Mensaje mensaje = null;
-		String query = "SELECT * FROM Mensaje WHERE id_mensaje = " + pIdMensaje;
+		String query = "SELECT * FROM mensaje WHERE id_mensaje = " + pIdMensaje;
 		Connection conexion = DBManager.getInstance().connect();
 
 		try {
@@ -121,7 +121,7 @@ public class MensajeDAODBImpl implements IMensajeDAO {
 
 		int maximo = 0;
 
-		String query = "SELECT MAX(id_mensaje) maximo FROM MENSAJE";
+		String query = "SELECT MAX(id_mensaje) maximo FROM mensaje";
 		Connection conexion = DBManager.getInstance().connect();
 		try {
 			Statement s = conexion.createStatement();
@@ -151,7 +151,7 @@ public class MensajeDAODBImpl implements IMensajeDAO {
 	@Override
 	public void updateEstadoMensaje(String pEstado, int pIdMensaje)
 			throws DAOException {
-		String query = "UPDATE MENSAJE SET ESTADO = '" + pEstado
+		String query = "UPDATE mensaje SET ESTADO = '" + pEstado
 				+ "' WHERE id_mensaje = " + pIdMensaje;
 
 		Connection conexion = DBManager.getInstance().connect();
@@ -182,7 +182,7 @@ public class MensajeDAODBImpl implements IMensajeDAO {
 	public void mensajeUpdate(Mensaje pMensaje) throws DAOException {
 		String fecha = (new SimpleDateFormat(Constantes.FORMATO_FECHA))
 				.format(new Date());
-		String query = "UPDATE MENSAJE SET PARA = '" + pMensaje.getPara()
+		String query = "UPDATE mensaje SET PARA = '" + pMensaje.getPara()
 				+ "', CC='" + pMensaje.getCc() + "', CCO='" + pMensaje.getCco()
 				+ "', ASUNTO='" + pMensaje.getAsunto() + "', TEXTO='"
 				+ pMensaje.getTexto() + "', FECHA='" + fecha
@@ -216,7 +216,7 @@ public class MensajeDAODBImpl implements IMensajeDAO {
 	@Override
 	public void mensajeDelete(Mensaje pMensaje) throws DAOException {
 		int idMensaje = pMensaje.getIdMensaje();
-		String query = "DELETE FROM MENSAJE WHERE id_mensaje =" + idMensaje;
+		String query = "DELETE FROM mensaje WHERE id_mensaje =" + idMensaje;
 		Connection conexion = DBManager.getInstance().connect();
 		try {
 			Statement s = conexion.createStatement();
@@ -249,7 +249,7 @@ public class MensajeDAODBImpl implements IMensajeDAO {
 
 		Connection conexion = DBManager.getInstance().connect();
 		try {
-			String query = "INSERT INTO MENSAJE (id_mensaje, de, para, cc, cco, asunto, texto, estado, fecha, caracter) VALUES ("
+			String query = "INSERT INTO mensaje (id_mensaje, de, para, cc, cco, asunto, texto, estado, fecha, caracter) VALUES ("
 					+ pMensaje.getIdMensaje()
 					+ ", '"
 					+ pMensaje.getDe()
@@ -299,7 +299,7 @@ public class MensajeDAODBImpl implements IMensajeDAO {
 		Connection conexion = DBManager.getInstance().connect();
 
 		try {
-			String query = "INSERT INTO MENSAJE (id_mensaje, de, para, cc, cco, asunto, texto, estado, fecha, caracter) VALUES ("
+			String query = "INSERT INTO mensaje (id_mensaje, de, para, cc, cco, asunto, texto, estado, fecha, caracter) VALUES ("
 					+ pMensaje.getIdMensaje()
 					+ ", '"
 					+ pMensaje.getDe()

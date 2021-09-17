@@ -2,6 +2,8 @@ package bo;
 
 public class BOException extends Exception {
 
+	private static final long serialVersionUID = 1L;
+
 	public BOException() {
 		// TODO Auto-generated constructor stub
 	}
