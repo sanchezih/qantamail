@@ -2,7 +2,11 @@ package entidades;
 
 public class Contacto {
 	private int idContacto;
-	private String nombre, apellido, email, telefono, direccion;
+	private String nombre;
+	private String apellido;
+	private String email;
+	private String telefono;
+	private String direccion;
 
 	public int getIdContacto() {
 		return idContacto;
@@ -52,10 +56,9 @@ public class Contacto {
 		this.direccion = direccion;
 	}
 
+	@Override
 	public String toString() {
-		return "ID: " + this.idContacto + "\nNombre: " + this.nombre
-				+ "\nApellido: " + this.apellido + "\nEmail primario: "
-				+ this.email + "\nDireccion: " + this.direccion
-				+ "\ntelefono: " + this.telefono;
+		return "ID: " + this.idContacto + "\nNombre: " + this.nombre + "\nApellido: " + this.apellido
+				+ "\nEmail primario: " + this.email + "\nDireccion: " + this.direccion + "\ntelefono: " + this.telefono;
 	}
 }

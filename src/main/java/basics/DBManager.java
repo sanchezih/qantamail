@@ -1,11 +1,14 @@
 package basics;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class DBManager {
-
+	
+	
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String DB_NAME = "qantamail";
 	private static final String DB_URL = "jdbc:mysql://192.168.4.172/" + DB_NAME;
@@ -25,6 +28,7 @@ public class DBManager {
 
 	public Connection connect() {
 		Connection connection = null;
+		InputStream input = DBManager.class.getClassLoader().getResourceAsStream("config.properties");
 		try {
 			Class.forName(DRIVER).newInstance();
 			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
