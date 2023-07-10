@@ -42,8 +42,7 @@ public class Handler {
 	private JFrame frame;
 	Contacto contacto = null;
 
-	public ArrayList<Mensaje> getMensajesSegunCriterio(int pNumeroDeCriterio)
-			throws DAOException {
+	public ArrayList<Mensaje> getMensajesSegunCriterio(int pNumeroDeCriterio) throws DAOException {
 		MensajeDAODBImpl dm = new MensajeDAODBImpl();
 		setCaracterYEstado(pNumeroDeCriterio);
 		ArrayList<Mensaje> mensajes = dm.getAllMensaje(caracter, estado);
@@ -62,13 +61,11 @@ public class Handler {
 		bo.mensajeDelete(pMensaje);
 	}
 
-	public void getContactoByid(Contacto pContacto,
-			PanelContactos pPanelContactos, int pFila) {
+	public void getContactoByid(Contacto pContacto, PanelContactos pPanelContactos, int pFila) {
 		ContactoBO bo = new ContactoBO();
 		bo.setDao(new ContactoDAODBImpl());
 
-		VentanaContacto ventanaContacto = new VentanaContacto(pPanelContactos,
-				pFila);
+		VentanaContacto ventanaContacto = new VentanaContacto(pPanelContactos, pFila);
 		ventanaContacto.setVentanaContactos(pPanelContactos);
 		ventanaContacto.rellenarTextFields(pContacto);
 	}
@@ -142,10 +139,8 @@ public class Handler {
 		cambiarPanel(new PanelLogIn(this));
 	}
 
-	public void setMensajeSeleccionado(Mensaje pMensaje,
-			JTextField textFieldDe, JTextField textFieldPara,
-			JTextField textFieldCC, JTextField textFieldFecha,
-			JTextField textFieldAsunto, JTextArea textoMensaje) {
+	public void setMensajeSeleccionado(Mensaje pMensaje, JTextField textFieldDe, JTextField textFieldPara,
+			JTextField textFieldCC, JTextField textFieldFecha, JTextField textFieldAsunto, JTextArea textoMensaje) {
 
 		textFieldDe.setText(pMensaje.getDe());
 		textFieldPara.setText(pMensaje.getPara());
@@ -155,8 +150,7 @@ public class Handler {
 		textoMensaje.setText(pMensaje.getTexto());
 	}
 
-	public void lalala(int criterio, TableModelMensaje tableModelMensaje)
-			throws DAOException {
+	public void lalala(int criterio, TableModelMensaje tableModelMensaje) throws DAOException {
 		ArrayList<Mensaje> mensajes = getMensajesSegunCriterio(criterio);
 		tableModelMensaje.setListaDeMensajes(mensajes);
 		tableModelMensaje.fireTableDataChanged();
@@ -169,9 +163,8 @@ public class Handler {
 		return bo.getMensajeById(idMensaje);
 	}
 
-	public Contacto guardarContactoPress(String pId, String pNombre,
-			String pApellido, String pEmail, String pTelefono, String pDireccion)
-			throws BOException {
+	public Contacto guardarContactoPress(String pId, String pNombre, String pApellido, String pEmail, String pTelefono,
+			String pDireccion) throws BOException {
 		Contacto contacto = new Contacto();
 
 		ContactoBO bo = new ContactoBO();
@@ -194,9 +187,8 @@ public class Handler {
 		return contacto;
 	}
 
-	public Mensaje guardarMensajePress(String pId, String pPara, String pCc,
-			String pCco, String pAsunto, String pTexto) throws BOException,
-			SQLException, DAOException {
+	public Mensaje guardarMensajePress(String pId, String pPara, String pCc, String pCco, String pAsunto, String pTexto)
+			throws BOException, SQLException, DAOException {
 		Mensaje mensaje = new Mensaje();
 
 		MensajeBO bo = new MensajeBO();
@@ -220,9 +212,8 @@ public class Handler {
 		return mensaje;
 	}
 
-	public void enviarMensajePress(String pId, String pPara, String pCc,
-			String pCco, String pAsunto, String pTexto) throws SQLException,
-			DAOException, BOException {
+	public void enviarMensajePress(String pId, String pPara, String pCc, String pCco, String pAsunto, String pTexto)
+			throws SQLException, DAOException, BOException {
 
 		Mensaje mensaje = new Mensaje();
 		EnviarMensaje mail = new EnviarMensaje();
@@ -277,8 +268,7 @@ public class Handler {
 		return maximo + 1;
 	}
 
-	public void enviarYRecibirTodoPress() throws SQLException, DAOException,
-			BOException {
+	public void enviarYRecibirTodoPress() throws SQLException, DAOException, BOException {
 
 		MensajeBO bo = new MensajeBO();
 		bo.setDao(new MensajeDAODBImpl());
@@ -296,8 +286,8 @@ public class Handler {
 		if (cantRecibidos > 0) {
 			cargarPanelPrincipal();
 		}
-		JOptionPane.showMessageDialog(null, "Se recibieron " + cantRecibidos
-				+ " mensajes", "Recibir mensajes", JOptionPane.OK_OPTION);
+		JOptionPane.showMessageDialog(null, "Se recibieron " + cantRecibidos + " mensajes", "Recibir mensajes",
+				JOptionPane.OK_OPTION);
 
 	}
 
@@ -313,9 +303,7 @@ public class Handler {
 				cargarPanelPrincipal();
 				frame.validate();
 			} else {
-				JOptionPane.showMessageDialog(null,
-						"Usuario o password incorrecto", "Error",
-						JOptionPane.OK_OPTION);
+				JOptionPane.showMessageDialog(null, "Usuario o password incorrecto", "Error", JOptionPane.OK_OPTION);
 			}
 		} catch (BOException e) {
 			// TODO Auto-generated catch block
@@ -348,8 +336,7 @@ public class Handler {
 	}
 
 	public void mostrarError(String pMensajeDeError) {
-		JOptionPane.showMessageDialog(null, pMensajeDeError, "Error",
-				JOptionPane.OK_OPTION);
+		JOptionPane.showMessageDialog(null, pMensajeDeError, "Error", JOptionPane.OK_OPTION);
 	}
 
 	public ArrayList<Contacto> rellenarTablaContactos() throws DAOException {

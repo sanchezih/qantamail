@@ -11,9 +11,9 @@ public class DBManager {
 	
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String DB_NAME = "qantamail";
-	private static final String DB_URL = "jdbc:mysql://192.168.4.172/" + DB_NAME;
+	private static final String DB_URL = "jdbc:mysql://192.168.2.108:33060/" + DB_NAME;
 	private static final String DB_USERNAME = "root";
-	private static final String DB_PASSWORD = "password1234";
+	private static final String DB_PASSWORD = "Unapassword1234!";
 	private static DBManager instance = null;
 
 	private DBManager() {

@@ -11,9 +11,10 @@ import dao.IUsuarioDAO;
 
 public class UsuarioDAOImpl implements IUsuarioDAO {
 
-	public boolean getUsuarioByNombreUsuario(String pNombreUsuario, String pPassword)	throws DAOException {
+	public boolean getUsuarioByNombreUsuario(String pNombreUsuario, String pPassword) throws DAOException {
 
-		String query = "SELECT * FROM usuario WHERE nombre_usuario = '" + pNombreUsuario	+ "'AND password='" + pPassword + "' ";
+		String query = "SELECT * FROM usuario WHERE nombre_usuario = '" + pNombreUsuario + "'AND password='" + pPassword
+				+ "' ";
 		System.out.println(query);
 		Connection conexion = DBManager.getInstance().connect();
 
@@ -27,7 +28,7 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
 			try {
 				conexion.rollback();
 				e.printStackTrace();
-				throw new DAOException(	"Error al conectar con la base de datos", e);
+				throw new DAOException("Error al conectar con la base de datos", e);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}

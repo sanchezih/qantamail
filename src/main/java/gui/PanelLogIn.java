@@ -49,12 +49,10 @@ public class PanelLogIn extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				if (validarCampos()) {
-					JOptionPane.showMessageDialog(null,
-							"Debe ingresar un usuario y una contraseña",
-							"Error", JOptionPane.OK_OPTION);
+					JOptionPane.showMessageDialog(null, "Debe ingresar un usuario y una contraseï¿½a", "Error",
+							JOptionPane.OK_OPTION);
 				} else {
-					handler.logInAdministrator(textFieldUsuario.getText(),
-							textFieldPassword.getText());
+					handler.logInAdministrator(textFieldUsuario.getText(), textFieldPassword.getText());
 				}
 			}
 		});
@@ -62,8 +60,7 @@ public class PanelLogIn extends JPanel {
 	}
 
 	public boolean validarCampos() {
-		if (textFieldUsuario.getText().isEmpty()
-				|| textFieldPassword.getText().isEmpty()) {
+		if (textFieldUsuario.getText().isEmpty() || textFieldPassword.getText().isEmpty()) {
 			return true;
 		} else {
 			return false;
