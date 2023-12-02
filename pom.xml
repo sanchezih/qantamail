@@ -4,10 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.sanchezih</groupId>
 	<artifactId>qantamail</artifactId>
-	<version>1.1</version>
+	<version>2.0.0</version>
 	<name>qantamail</name>
 	<description>qantamail</description>
-
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

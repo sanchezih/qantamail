@@ -12,6 +12,9 @@ import entidades.Contacto;
 
 public class ContactoDAODBImpl implements IContactoDAO {
 
+	/**
+	 * 
+	 */
 	public void contactoInsert(Contacto pContacto) throws DAOException {
 
 		String query = "INSERT INTO contacto (id_contacto, nombre, apellido, email,  telefono, direccion) VALUES ("
